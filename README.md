@@ -1,3 +1,5 @@
+this is a version of JsGridSearch without colors and dependencies - https://github.com/bergloman/JsGridSearch
+
 # JsGridSearch
 
 Simple mechanism for performing grid-search in `node.js` -

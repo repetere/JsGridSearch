@@ -1,35 +1,6 @@
-/*
-BSD 2-Clause License
-
-Copyright (c) 2017, Viktor Jovanoski
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met:
-
-* Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright notice,
-  this list of conditions and the following disclaimer in the documentation
-  and/or other materials provided with the distribution.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
-
 "use strict";
 
 const fs = require("fs");
-const colors = require("colors/safe");
 
 /** This class performs grid search - an exhaustive search through all parameter combinations.
  * It can then call custom result evaluation and display heat-map in console.
@@ -216,11 +187,11 @@ class GridSearch {
     /** Outputs numeric values while producing mathing color for the value */
     _outputValue(val, width) {
         let s = this._padToWidth("" + val, width);
-        if (this._shades[1] < val) return colors.magenta(s);
-        if (this._shades[2] < val) return colors.red(s);
-        if (this._shades[3] < val) return colors.yellow(s);
-        if (this._shades[4] < val) return colors.white(s);
-        return colors.grey(s);
+        if (this._shades[1] < val) return s.magenta;
+        if (this._shades[2] < val) return s.red;
+        if (this._shades[3] < val) return s.yellow;
+        if (this._shades[4] < val) return s.white;
+        return s.grey;
     }
 
     /** Display table in friendly way */
@@ -253,7 +224,7 @@ class GridSearch {
         row += "| " + this._padToWidth("", first_col_width);
         row2 += "|-" + this._padToWidth("", first_col_width, "-");
         for (let i = 0; i < col_titles.length; i++) {
-            row += "| " + colors.cyan(this._padToWidth(col_titles[i], col_widths[i]));
+            row += "| " + this._padToWidth(col_titles[i], col_widths[i]).cyan;
             row2 += "|-" + this._padToWidth("", col_widths[i], "-");
         }
         console.log(row);
@@ -261,7 +232,7 @@ class GridSearch {
 
         for (let j = 0; j < row_titles.length; j++) {
             row = "| ";
-            row += colors.cyan(this._padToWidth(row_titles[j], first_col_width));
+            row += this._padToWidth(row_titles[j], first_col_width).cyan;
             for (let i = 0; i < col_titles.length; i++) {
                 row += "| " + this._outputValue(tab.results[j][i], col_widths[i]);
             }

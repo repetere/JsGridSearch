@@ -1,7 +1,7 @@
 {
-  "name": "js-grid-search",
-  "version": "1.3.3",
-  "description": "Simple mechanism for performing grid-search in node.js - parameter tuning for machine learning algorithms.",
+  "name": "parameter-tuning",
+  "version": "1.3.2",
+  "description": "JsGridSearch (without colors and dependencies) Simple mechanism for performing grid-search in node.js - parameter tuning for machine learning algorithms.",
   "main": "src/grid_search.js",
   "scripts": {
     "test": "mocha tests/*.js"
@@ -18,12 +18,15 @@
     "tuning"
   ],
   "author": "Viktor Jovanoski",
+  "contributors": [
+    {    
+      "name": "Yaw Etse"
+    }
+  ],
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/bergloman/JsGridSearch/issues"
   },
   "homepage": "https://github.com/bergloman/JsGridSearch#readme",
-  "dependencies": {
-    "colors": "^1.1.2"
-  }
+  "dependencies": { }
 }
